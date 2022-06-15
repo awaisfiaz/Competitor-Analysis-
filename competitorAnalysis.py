@@ -8,8 +8,8 @@ import re
 import pandas as pd
 import seaborn as sns
 import numpy as np
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
 
 
 
@@ -32,8 +32,7 @@ st.title("TUBESTACK TOOLS")
 seleted = option_menu(
     menu_title="Best Tools For Content Creators",
     options=["Competitor Analysis", "Top Rated Keywords", "Top Description Tags",
-             "Video Engagement Checker",
-             "Keyword Research"],
+             "Video Engagement Checker"],
     default_index=0,
     orientation="horizontal",
 )
@@ -357,32 +356,32 @@ if seleted == "Video Engagement Checker":
 
 #############################   Tool Number 5   ##################################
 
-if seleted == "Keyword Research":
-    options = webdriver.ChromeOptions()
-    options.headless = True
-    driver = webdriver.Chrome(options=options)
+# if seleted == "Keyword Research":
+#     options = webdriver.ChromeOptions()
+#     options.headless = True
+#     driver = webdriver.Chrome(options=options)
 
 
-    st.title("Keyword Research Tool") 
-    s_query = \
-        st.text_input('Enter keyword to find volume and difficulty level'
-                      )
-    search_url="https://h-supertools.com/youtube/youtube-keyword-tool?searchTerm={q}"
+#     st.title("Keyword Research Tool") 
+#     s_query = \
+#         st.text_input('Enter keyword to find volume and difficulty level'
+#                       )
+#     search_url="https://h-supertools.com/youtube/youtube-keyword-tool?searchTerm={q}"
 
     
-    if len(s_query) != 0:
-        driver.get(search_url.format(q=s_query))
-        time.sleep(9)
-        table = driver.find_element(by=By.XPATH, value="//table[contains(@id,'keywordsTBL')]").get_attribute("outerHTML")
-        driver.execute_script("window.scrollTo(0,900)")
-        if table:
-            time.sleep(3)
-            df = pd.read_html(table)
-            merged = pd.concat(df)
-            merged.index = np.arange(1, len(merged)+1)
-            # merged = merged.iloc[: , :-1]
-            merged = pd.DataFrame(merged)
-            st.table(merged)
-            # print(merged)
-            driver.close()
+#     if len(s_query) != 0:
+#         driver.get(search_url.format(q=s_query))
+#         time.sleep(9)
+#         table = driver.find_element(by=By.XPATH, value="//table[contains(@id,'keywordsTBL')]").get_attribute("outerHTML")
+#         driver.execute_script("window.scrollTo(0,900)")
+#         if table:
+#             time.sleep(3)
+#             df = pd.read_html(table)
+#             merged = pd.concat(df)
+#             merged.index = np.arange(1, len(merged)+1)
+#             # merged = merged.iloc[: , :-1]
+#             merged = pd.DataFrame(merged)
+#             st.table(merged)
+#             # print(merged)
+#             driver.close()
     
